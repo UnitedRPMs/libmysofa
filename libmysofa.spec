@@ -14,6 +14,7 @@ Source:         https://github.com/hoene/libmysofa/archive/%{commit0}/%{name}-%{
 
 BuildRequires:	cmake 
 BuildRequires:	zlib-devel
+BuildRequires:  gcc-c++
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description
