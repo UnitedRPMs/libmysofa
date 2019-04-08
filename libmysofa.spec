@@ -40,7 +40,8 @@ This package contains the development files.
 %prep
 %autosetup -n %{name}-%{commit0}
 
-sed -i 's|LIBRARY DESTINATION lib|LIBRARY DESTINATION lib64|g' src/CMakeLists.txt
+sed -i 's|/lib|/%{_lib}/pkgconfig|g' libmysofa.pc.cmake
+sed -i 's|lib/pkgconfig|%{_lib}/pkgconfig|g' CMakeLists.txt
 
 %build
 %cmake -DBUILD_TESTS:BOOL='OFF' \
@@ -70,6 +71,7 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 
 %files devel
 %{_includedir}/mysofa.h
+%{_libdir}/pkgconfig/libmysofa.pc
 
 %changelog
 
