@@ -1,9 +1,9 @@
-%global commit0 e07edb39e9ecc796127cd748ada4a4bac88cb5d2
+%global commit0 f8762e95119973d2ff0949b4bcbffaa7aab3f328
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:           libmysofa
-Version:        0.8
+Version:        0.9
 Release:    	1%{?gver}%{dist}
 Summary:        C library to read HRTFs if they are stored in the AES69-2015 SOFA format
 
@@ -74,6 +74,9 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 %{_libdir}/pkgconfig/libmysofa.pc
 
 %changelog
+
+* Fri Nov 29 2019 David Vasquez <davidva at tutanota dot com> 0.9-1.gitf8762e9
+- Updated to 0.9-1.gitf8762e9
 
 * Sat Sep 14 2019 David Vasquez <davidva at tutanota dot com> 0.8-1.gite07edb3
 - Updated to 0.8-1.gite07edb3
