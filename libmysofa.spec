@@ -67,7 +67,7 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 %files libs
 %{_libdir}/libmysofa.so
 %{_libdir}/libmysofa.so.0
-%{_libdir}/libmysofa.so.0.5.1
+%{_libdir}/libmysofa.so.0.9.1
 
 %files devel
 %{_includedir}/mysofa.h
