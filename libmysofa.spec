@@ -21,7 +21,7 @@
 
 Name:           libmysofa
 Version:        1.1
-Release:    	1%{?gver}%{dist}
+Release:    	2%{?gver}%{dist}
 Summary:        C library to read HRTFs if they are stored in the AES69-2015 SOFA format
 
 Group:          System Environment/Libraries
@@ -61,9 +61,10 @@ sed -i 's|/lib|/%{_lib}/pkgconfig|g' libmysofa.pc.cmake
 sed -i 's|lib/pkgconfig|%{_lib}/pkgconfig|g' CMakeLists.txt
 
 %build
-%cmake -DBUILD_TESTS:BOOL='OFF' \
- -DCMAKE_BUILD_TYPE:STRING='Release' \
- -DCMAKE_COLOR_MAKEFILE:BOOL='ON' \
+%cmake -DBUILD_TESTS=OFF \
+ -DCMAKE_BUILD_TYPE=Release \
+ -DCMAKE_COLOR_MAKEFILE=ON \
+ -DCODE_COVERAGE=OFF \
  -Wno-dev .
 
 make
@@ -90,6 +91,9 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 %{_libdir}/pkgconfig/libmysofa.pc
 
 %changelog
+
+* Sat Jul 11 2020 David Va <davidva at tuta dot io> 1.1-2.gitcc9831f
+- Fix https://github.com/UnitedRPMs/issues/issues/55
 
 * Tue Jun 23 2020 David Va <davidva at tuta dot io> 1.1-1.gitcc9831f
 - Updated to 1.1-1.gitcc9831f
