@@ -61,15 +61,14 @@ sed -i 's|/lib|/%{_lib}/pkgconfig|g' libmysofa.pc.cmake
 sed -i 's|lib/pkgconfig|%{_lib}/pkgconfig|g' CMakeLists.txt
 
 %build
-%cmake -DBUILD_TESTS=OFF \
- -DCMAKE_BUILD_TYPE=Release \
- -DCMAKE_COLOR_MAKEFILE=ON \
- -DCODE_COVERAGE=OFF \
- -Wno-dev .
+%cmake \
+  -DBUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_COLOR_MAKEFILE=ON -DCODE_COVERAGE=OFF -Wno-dev ..
 
-make
+pushd %{_target_platform}
+%make_build
 
 %install
+pushd %{_target_platform}
 %make_install
 rm -f %{buildroot}/%{_libdir}/libmysofa.a 
 rm -f %{buildroot}/usr/lib/libmysofa.a
