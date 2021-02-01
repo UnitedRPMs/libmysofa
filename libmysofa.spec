@@ -1,7 +1,7 @@
 #
 # spec file for package libmysofa
 #
-# Copyright (c) 2020 UnitedRPMs.
+# Copyright (c) 2021 UnitedRPMs.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,12 +15,12 @@
 # Please submit bugfixes or comments via https://goo.gl/zqFJft
 #
 
-%global commit0 cc9831fd5b20be4624f4df379b3e18fadf45aca0
+%global commit0 8dda834bf9851357fdaae7a6ebd76b157bb91c7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:           libmysofa
-Version:        1.1
+Version:        1.2
 Release:    	2%{?gver}%{dist}
 Summary:        C library to read HRTFs if they are stored in the AES69-2015 SOFA format
 
@@ -90,6 +90,9 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 %{_libdir}/pkgconfig/libmysofa.pc
 
 %changelog
+
+* Tue Jan 26 2021 David Va <davidva at tuta dot io> 1.2-2.git8dda834
+- Updated to 1.2-2.git8dda834
 
 * Sat Jul 11 2020 David Va <davidva at tuta dot io> 1.1-2.gitcc9831f
 - Fix https://github.com/UnitedRPMs/issues/issues/55
