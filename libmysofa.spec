@@ -15,13 +15,13 @@
 # Please submit bugfixes or comments via https://goo.gl/zqFJft
 #
 
-%global commit0 8dda834bf9851357fdaae7a6ebd76b157bb91c7a
+%global commit0 8423749934bfc09121261694b1ccfba7e6d5c955
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:           libmysofa
-Version:        1.2
-Release:    	2%{?gver}%{dist}
+Version:        1.2.1
+Release:    	1%{?gver}%{dist}
 Summary:        C library to read HRTFs if they are stored in the AES69-2015 SOFA format
 
 Group:          System Environment/Libraries
@@ -61,15 +61,14 @@ sed -i 's|/lib|/%{_lib}/pkgconfig|g' libmysofa.pc.cmake
 sed -i 's|lib/pkgconfig|%{_lib}/pkgconfig|g' CMakeLists.txt
 
 %build
-%cmake \
+mkdir -p build
+%cmake -B build \
   -DBUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_COLOR_MAKEFILE=ON -DCODE_COVERAGE=OFF -Wno-dev ..
 
-pushd %{_target_platform}
-%make_build
+%make_build -C build
 
 %install
-pushd %{_target_platform}
-%make_install
+%make_install -C build
 rm -f %{buildroot}/%{_libdir}/libmysofa.a 
 rm -f %{buildroot}/usr/lib/libmysofa.a
 
@@ -90,6 +89,9 @@ rm -f %{buildroot}/usr/lib/libmysofa.a
 %{_libdir}/pkgconfig/libmysofa.pc
 
 %changelog
+
+* Fri Oct 22 2021 David Va <davidva at tuta dot io> 1.2.1-1.git8423749
+- Updated to 1.2.1-1.git8423749
 
 * Tue Jan 26 2021 David Va <davidva at tuta dot io> 1.2-2.git8dda834
 - Updated to 1.2-2.git8dda834
